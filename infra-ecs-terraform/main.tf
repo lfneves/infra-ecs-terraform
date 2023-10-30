@@ -59,20 +59,20 @@ resource "aws_ecs_service" "delivery_service" {
 }
 
 # Create a VPC and subnet (Replace with your own VPC and subnet definitions)
-resource "aws_vpc" "my_vpc" {
+resource "aws_vpc" "delivery_ecs_vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
 resource "aws_subnet" "delivery_ecs_subnet" {
   count = 2
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.delivery_ecs_vpc.id
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-1a" # Specify the desired availability zones
 }
 
 # Create a security group (Replace with your own security group definitions)
 resource "aws_security_group" "delivery_ecs_sg" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.delivery_ecs_vpc.id
 
   // Define your security group rules here...
 }
