@@ -53,7 +53,7 @@ resource "aws_ecs_service" "delivery_service" {
   launch_type = "FARGATE"
 
   network_configuration {
-    subnets = [aws_subnet.delivery_ecs_subnet.id]
+    subnets = [aws_subnet.delivery_ecs_subnet[0].id]
     security_groups = [aws_security_group.delivery_ecs_sg.id]
   }
 }
